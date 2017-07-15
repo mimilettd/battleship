@@ -28,7 +28,7 @@ class GameGrid
     elsif coord1_ascii[0] + 1 == coord2_ascii[0] && coord1_ascii[1] == coord2_ascii[1]
       @grid[coord2] = true
     else
-      puts "Ships can only be laid either horizontally or vertically!"
+      puts "Ships can only be laid either horizontally or vertically!!"
     end
   end
 
