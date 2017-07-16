@@ -32,6 +32,13 @@ class GameGridTest < Minitest::Test
     assert_equal false, game_grid.grid["c1"]
   end
 
+  def test_false_if_coordinates_wrap_around_board
+    game_grid = GameGrid.new
+    game_grid.two_unit_ship_position("a4", "a1")
+    assert_equal false, game_grid.grid["a4"]
+    assert_equal false, game_grid.grid["a1"]
+  end
+
   def test_three_unit_ship_validation
     game_grid = GameGrid.new
     game_grid.three_unit_ship_position("a1", "a3")
@@ -44,6 +51,11 @@ class GameGridTest < Minitest::Test
     game_grid.three_unit_ship_position("a1", "c3")
     assert_equal false, game_grid.grid["a1"]
     assert_equal false, game_grid.grid["c3"]
+
+    game_grid = GameGrid.new
+    game_grid.three_unit_ship_position("a4", "a2")
+    assert_equal false, game_grid.grid["a4"]
+    assert_equal false, game_grid.grid["c2"]
   end
 
   def test_mid_cell_switch_to_true_if_three_unit_ship_laid_horizontal
