@@ -34,13 +34,21 @@ class GameGrid
   end
 
   def three_unit_ship_position(coord1, coord2)
-    if @grid.has_key?(coord1)
+    if @grid.has_key?(coord1) && @grid[coord1] == false
       @grid[coord1] = true
+      validating_overlap(coord1, coord2)
+    else
+    puts "Ships cannot overlap. Please enter your coordinates again."
     end
-    validating_three_unit_ship_position(coord1, coord2)
   end
 
-  def validating_three_unit_ship_position(coord1, coord2)
+  def validating_overlap(coord1, coord2)
+    if @grid[coord2] == false
+      validating_start_and_end(coord1, coord2)
+    end
+  end
+
+  def validating_start_and_end(coord1, coord2)
     coord1_ascii = coord1.chars.map do |n|
       n.ord
     end

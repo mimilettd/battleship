@@ -62,4 +62,14 @@ class GameGridTest < Minitest::Test
     assert_equal true, game_grid.grid["c1"]
   end
 
+  def test_ships_cannot_overlap
+    game_grid = GameGrid.new
+    game_grid.two_unit_ship_position("a1", "a2")
+    game_grid.three_unit_ship_position("a1", "c1")
+    assert_equal true, game_grid.grid["a1"]
+    assert_equal true, game_grid.grid["a2"]
+    assert_equal false, game_grid.grid["b1"]
+    assert_equal false, game_grid.grid["c1"]
+  end
+
 end
