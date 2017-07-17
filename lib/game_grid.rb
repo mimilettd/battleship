@@ -1,12 +1,12 @@
 require 'pry'
 
 class GameGrid
-  attr_reader :grid
+  attr_accessor :grid
   def initialize
-    @grid = {"a1" => false, "a2" => false, "a3" => false, "a4" => false,
-             "b1" => false, "b2" => false, "b3" => false, "b4" => false,
-             "c1" => false, "c2" => false, "c3" => false, "c4" => false,
-             "d1" => false, "d2" => false, "d3" => false, "d4" => false}
+    @grid = {"A1" => false, "A2" => false, "A3" => false, "A4" => false,
+             "B1" => false, "B2" => false, "B3" => false, "B4" => false,
+             "C1" => false, "C2" => false, "C3" => false, "C4" => false,
+             "D1" => false, "D2" => false, "D3" => false, "D4" => false}
   end
 
   def two_unit_ship_position(coord1, coord2)
