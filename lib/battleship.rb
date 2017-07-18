@@ -1,8 +1,12 @@
 require_relative 'standard_output'
+require_relative 'computer'
+require_relative 'player'
 require 'pry'
 
 class Battleship
 include StandardOutput
+  attr_reader :computer_player,
+              :human_player
   def initialize
     welcome
   end
@@ -18,7 +22,7 @@ include StandardOutput
     if user_input == "i"
       display_instructions
     elsif user_input == "q"
-      quit
+      quit_game
     elsif user_input == "p"
       play_game
     end
@@ -31,4 +35,33 @@ include StandardOutput
     start_game_sequence(user_input)
   end
 
+  def quit_game
+    quit
+    exit
+  end
+
+  def play_game
+    @computer_player = Computer.new
+    @human_player = Player.new
+    place_two_unit_ship
+  end
+
+  def place_two_unit_ship
+    enter_two_unit_ship_placement
+    user_input = gets.chomp
+    split_user_input = user_input.split(" ")
+    human_player.two_unit_ship_position(split_user_input)
+    place_three_unit_ship
+  end
+
+  def place_three_unit_ship
+    enter_three_unit_ship_placement
+    user_input = gets.chomp
+    split_user_input = user_input.split(" ")
+    human_player.three_unit_ship_position(split_user_input)
+  end
+
 end
+
+battleship = Battleship.new
+battleship.welcome
