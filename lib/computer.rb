@@ -9,14 +9,14 @@ class Computer
 
   def find_first_two_unit_ship_coordinate
     coord1 = @computer_player.grid.to_a.sample(1).to_h.keys[0]
-    @computer_player.grid[coord1] = true
+    @computer_player.grid[coord1][1] = true
     find_second_two_unit_ship_coordinate(coord1)
   end
 
   def find_second_two_unit_ship_coordinate(coord1)
     coord2_array = neighboring_coordinates_for_two_unit_ship[coord1]
     coord2 = coord2_array.sample(1)[0]
-    @computer_player.grid[coord2] = true
+    @computer_player.grid[coord2][1] = true
     find_first_three_unit_ship_coordinate
   end
 
@@ -41,10 +41,10 @@ class Computer
 
   def find_first_three_unit_ship_coordinate
     coord1 = @computer_player.grid.to_a.sample(1).to_h.keys[0]
-    if @computer_player.grid[coord1] == true
+    if @computer_player.grid[coord1][1] == true
       find_first_three_unit_ship_coordinate
     else
-      @computer_player.grid[coord1] = true
+      @computer_player.grid[coord1][1] = true
       find_second_three_unit_ship_coordinate(coord1)
     end
   end
@@ -54,8 +54,8 @@ class Computer
     coord2_array = coord2_array_sample.sample(1)[0]
     coord2 = coord2_array[0]
     coord3 = coord2_array[1]
-    @computer_player.grid[coord2] = true
-    @computer_player.grid[coord3] = true
+    @computer_player.grid[coord2][1] = true
+    @computer_player.grid[coord3][1] = true
   end
 
   def neighboring_coordinates_for_three_unit_ship
@@ -112,10 +112,10 @@ class Computer
   # end
 
   def match_player_shot_with_key(shot_selection)
-    if @computer_player.grid[shot_selection] == true
-      @computer_player.grid[shot_selection] = "  H  "
+    if @computer_player.grid[shot_selection][1] == true
+      @computer_player.grid[shot_selection][0] = "  H  "
     else
-      @computer_player.grid[shot_selection] = "  M  "
+      @computer_player.grid[shot_selection][0] = "  M  "
     end
   end
   #
