@@ -100,6 +100,16 @@ include StandardOutput
     @human_player.grid[coord3][1] = true
   end
 
+  def match_computer_shot_with_key
+    shot_selection = @human_player.grid.to_a.sample(1).to_h.keys[0]
+    if @human_player.grid[shot_selection][1] == true
+      @human_player.grid[shot_selection][0] = "  H  "
+      you_hit
+    else
+      @human_player.grid[shot_selection][0] = "  M  "
+      you_missed
+    end
+  end
 
 
 end
