@@ -67,11 +67,15 @@ include StandardOutput
     choose_a_position_to_fire
     user_input = gets.chomp
     computer_player.match_player_shot_with_key(user_input)
-    loop_player_shot_sequence
+    hit_enter_to_end_turn
+    user_input = gets.chomp
+    if user_input == "\n"
+      initiate_computer_shot_sequence
+    end
   end
 
-  def loop_player_shot_sequence
-    initiate_player_shot_sequence
+  def initiate_computer_shot_sequence
+    human_player.human_player.print_game_board
   end
 
 end

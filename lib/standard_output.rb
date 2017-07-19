@@ -40,5 +40,17 @@ module StandardOutput
     puts "\n\nChoose a square you would like to fire. Good luck!\n\n"
   end
 
+  def you_missed
+    puts "Hah! You missed!\n\n"
+  end
+
+  def you_hit
+    puts "You hit my ship! How dare you!\n\n"
+  end
+
+  def hit_enter_to_end_turn
+    puts "Now end you turn by pressing ENTER."
+  end
+
 
 end

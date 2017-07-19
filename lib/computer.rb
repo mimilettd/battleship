@@ -1,6 +1,7 @@
 require_relative 'game_grid'
 
 class Computer
+include StandardOutput
   attr_reader :computer_player
   def initialize
     @computer_player = GameGrid.new
@@ -114,8 +115,10 @@ class Computer
   def match_player_shot_with_key(shot_selection)
     if @computer_player.grid[shot_selection][1] == true
       @computer_player.grid[shot_selection][0] = "  H  "
+      you_hit
     else
       @computer_player.grid[shot_selection][0] = "  M  "
+      you_missed
     end
   end
   #
