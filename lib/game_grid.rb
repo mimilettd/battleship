@@ -1,8 +1,10 @@
+require_relative 'ship'
 require 'pry'
 
 class GameGrid
   attr_accessor :grid,
-                :print_game_board
+                :print_game_board,
+                :ship
   def initialize
     @grid = {"A1" => [" ", false],
              "A2" => [" ", false],
@@ -30,6 +32,24 @@ class GameGrid
     c_row         = ["C", @grid["C1"][0], @grid["C2"][0], @grid["C3"][0], @grid["C4"][0]].join
     d_row         = ["D", @grid["D1"][0], @grid["D2"][0], @grid["D3"][0], @grid["D4"][0]].join
     bottom_border = "==================="
-    print "#{top_border}\n#{header}\n#{a_row}\n#{b_row}\n#{c_row}\n#{d_row}\n#{bottom_border}\n\n"
+    print "\n#{top_border}\n#{header}\n#{a_row}\n#{b_row}\n#{c_row}\n#{d_row}\n#{bottom_border}\n\n"
   end
+
+  def create_new_ship
+    @ship = Ship.new
+  end
+
+  def space_1(coord)
+    @ship.space_1(coord)
+  end
+
+  def space_2(coord)
+    @ship.space_2(coord)
+    binding.pry
+  end
+
+  def space_3(coord)
+    @ship.space_3(coord)
+  end
+
 end

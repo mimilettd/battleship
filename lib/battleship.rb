@@ -64,18 +64,22 @@ include StandardOutput
 
   def initiate_player_shot_sequence
     computer_player.computer_player.print_game_board
+    your_turn
     choose_a_position_to_fire
     user_input = gets.chomp
     computer_player.match_player_shot_with_key(user_input)
     hit_enter_to_end_turn
-    user_input = gets.chomp
+    user_input = gets
     if user_input == "\n"
       initiate_computer_shot_sequence
     end
   end
 
   def initiate_computer_shot_sequence
+    my_turn
+    human_player.match_computer_shot_with_key
     human_player.human_player.print_game_board
+    computer_player.computer_player.print_game_board
   end
 
 end

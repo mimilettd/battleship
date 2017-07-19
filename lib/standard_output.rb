@@ -36,8 +36,12 @@ module StandardOutput
     puts "\n\nIncorrect ship placement. Please enter the squares for the\nthree-unit ship again:\n\n"
   end
 
+  def your_turn
+    puts "IT'S YOUR TURN:"
+  end
+
   def choose_a_position_to_fire
-    puts "\n\nChoose a square you would like to fire. Good luck!\n\n"
+    puts "Choose a square you would like to fire. Good luck!\n\n"
   end
 
   def you_missed
@@ -52,5 +56,15 @@ module StandardOutput
     puts "Now end you turn by pressing ENTER."
   end
 
+  def my_turn
+    puts "\n\nIT'S MY TURN:"
+  end
 
+  def i_hit
+    puts "I hit your ship!\n\n"
+  end
+
+  def i_missed
+    puts "I missed...\n\n"
+  end
 end
