@@ -4,6 +4,8 @@ require 'pry'
 
 class Player
 include StandardOutput
+  attr_reader   :ship_1,
+                :ship_2
   attr_accessor :human_player
   def initialize
     @human_player = GameGrid.new
@@ -14,8 +16,9 @@ include StandardOutput
     coord2 = coordinates[1]
     if @human_player.grid.has_key?(coord1)
       @human_player.grid[coord1][1] = true
-      @human_player.create_new_ship
-      @human_player.space_1(coord1)
+      @ship_1 = @human_player.create_new_ship
+      @ship_1.space_1(coord1)
+      binding.pry
     end
     validating_two_unit_ship_position(coord1, coord2)
   end
@@ -29,10 +32,12 @@ include StandardOutput
     end
     if coord1_ascii[0] == coord2_ascii[0] && coord1_ascii[1] + 1 == coord2_ascii[1]
       @human_player.grid[coord2][1] = true
-      @human_player.space_2(coord2)
+      @ship_1.space_2(coord2)
+      binding.pry
     elsif coord1_ascii[0] + 1 == coord2_ascii[0] && coord1_ascii[1] == coord2_ascii[1]
       @human_player.grid[coord2][1] = true
-      @human_player.space_2(coord2)
+      @ship_1.space_2(coord2)
+      binding.pry
     else
       @human_player.grid[coord1][1] = false
       incorrect_ship_placement_for_two_unit_ship
@@ -47,8 +52,9 @@ include StandardOutput
     coord2 = coordinates[1]
     if @human_player.grid.has_key?(coord1) && @human_player.grid[coord1][1] == false
       @human_player.grid[coord1][1] = true
-      @human_player.create_new_ship
-      @human_player.space_1(coord1)
+      @ship_2 = @human_player.create_new_ship
+      @ship_2.space_1(coord1)
+      binding.pry
       validating_overlap(coord1, coord2)
     else
     incorrect_ship_placement_for_three_unit_ship
@@ -73,11 +79,13 @@ include StandardOutput
     end
     if coord1_ascii[0] == coord2_ascii[0] && coord1_ascii[1] + 2 == coord2_ascii[1]
       @human_player.grid[coord2][1] = true
-      @human_player.space_3(coord2)
+      @ship_2.space_3(coord2)
+      binding.pry
       convert_horizontal_middle_cell(coord2_ascii)
     elsif coord1_ascii[0] + 2 == coord2_ascii[0] && coord1_ascii[1] == coord2_ascii[1]
       @human_player.grid[coord2][1] = true
-      @human_player.space_3(coord2)
+      @ship_2.space_3(coord2)
+      binding.pry
       convert_vertical_middle_cell(coord2_ascii)
     else
       @human_player.grid[coord1][1] = false
@@ -97,7 +105,8 @@ include StandardOutput
     end
     coord3 = coord3_char.join
     @human_player.grid[coord3][1] = true
-    @human_player.space_2(coord3)
+    @ship_2.space_2(coord3)
+    binding.pry
   end
 
   def convert_vertical_middle_cell(coord2_ascii)
@@ -109,7 +118,7 @@ include StandardOutput
     end
     coord3 = coord3_char.join
     @human_player.grid[coord3][1] = true
-    @human_player.space_2(coord3)
+    @ship_2.space_2(coord3)
     binding.pry
   end
 

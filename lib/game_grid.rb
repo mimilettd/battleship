@@ -41,6 +41,7 @@ class GameGrid
 
   def space_1(coord)
     @ship.space_1(coord)
+    binding.pry
   end
 
   def space_2(coord)
