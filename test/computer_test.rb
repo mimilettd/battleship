@@ -25,4 +25,18 @@ class ComputerTest < Minitest::Test
     assert true, computer.find_second_two_unit_ship_coordinate(coord1)
   end
 
+  def test_computer_prints_game_board
+    computer = Computer.new
+    binding.pry
+    expected = "==========="
+              [".", "1", "2", "3", "4"]
+              ["A", " ", " ", " ", " "]
+              ["B", " ", " ", " ", " "]
+              ["C", " ", " ", " ", " "]
+              ["D", " ", " ", " ", " "]
+              "==========="
+
+    assert_equal expected, computer.print_game_board
+  end
+
 end

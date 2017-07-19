@@ -99,5 +99,16 @@ include StandardOutput
     @human_player.grid[coord3] = true
   end
 
+  def print_game_board
+    header = "==========="
+    row_1 = ". 1 2 3 4"
+    row_2 = "A"
+    row_3 = "B"
+    row_4 = "C"
+    row_5 = "D"
+    bottom = "==========="
+    print "#{header}\n#{row_1}\n#{row_2}\n#{row_3}\n#{row_4}\n#{row_5}\n#{bottom}"
+  end
+
 
 end

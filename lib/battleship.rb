@@ -59,6 +59,14 @@ include StandardOutput
     user_input = gets.chomp
     split_user_input = user_input.split(" ")
     human_player.three_unit_ship_position(split_user_input)
+    player_shot_sequence
+  end
+
+  def player_shot_sequence
+    human_player.print_game_board
+    choose_a_position_to_fire
+    user_input = gets.chomp
+    match_player_shot_with_key(user_input)
   end
 
 end

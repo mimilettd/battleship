@@ -36,5 +36,9 @@ module StandardOutput
     puts "\n\nIncorrect ship placement. Please enter the squares for the\nthree-unit ship again:\n\n"
   end
 
+  def choose_a_position_to_fire
+    puts "\n\nChoose a square you would like to fire. Good luck!\n\n"
+  end
+
 
 end
