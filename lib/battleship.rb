@@ -29,7 +29,6 @@ include StandardOutput
       quit_game
     elsif user_input == "p"
       @start = Time.now
-      binding.pry
       play_game
     end
   end
@@ -107,7 +106,6 @@ include StandardOutput
       computer_player.computer_player.print_game_board
       human_won
       @finish = Time.now
-      binding.pry
       puts "It took you #{@computer_player.shot} shots to sink your opponent's ships."
       puts "The total time that the game took to play was #{@finish - @start}."
       exit
