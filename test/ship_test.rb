@@ -1,8 +1,3 @@
-require 'simplecov'
-SimpleCov.start
-
-require 'minitest/autorun'
-require 'minitest/pride'
 require './lib/ship'
 require 'pry'
 
@@ -59,10 +54,9 @@ class ShipTest < Minitest::Test
   end
 
   def test_when_ship_damaged_it_increments_by_1
-    skip
     ship_1 = Ship.new
     ship_1.damaged
-    assert_equal 1, ship_1.damaged
+    assert_equal 1, ship_1.damage
   end
 
 end

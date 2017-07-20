@@ -107,14 +107,14 @@ include StandardOutput
       human_won
       @finish = Time.now
       puts "It took you #{@computer_player.shot} shots to sink your opponent's ships."
-      puts "The total time that the game took to play was #{@finish - @start}."
+      puts "The total time that the game took to play was #{@finish - @start} seconds."
       exit
     else
       human_player.human_player.print_game_board
       computer_won
       @finish = Time.now
       puts "It took your opponent #{@human_player.shot} shots to sink your ships."
-      puts "The total time that the game took to play was #{@finish - @start}."
+      puts "The total time that the game took to play was #{@finish - @start} seconds."
       exit
     end
   end

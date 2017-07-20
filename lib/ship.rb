@@ -3,20 +3,20 @@ class Ship
                 :hull,
                 :aft
   attr_accessor :length,
-                :damaged,
+                :damage,
                 :sunk
   def initialize
     @length      = 0
     @fore        = nil
     @hull        = nil
     @aft         = nil
-    @damaged     = 0
+    @damage     = 0
     @sunk        = false
   end
 
   def damaged
-    @damaged += 1
-    if @damaged == @length
+    @damage += 1
+    if @damage == @length
       @sunk = true
     end
   end
