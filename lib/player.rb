@@ -5,10 +5,14 @@ require 'pry'
 class Player
 include StandardOutput
   attr_reader   :ship_1,
-                :ship_2
-  attr_accessor :human_player
+                :ship_2,
+                :human_player
+  attr_accessor :shot,
+                :lose
   def initialize
     @human_player = GameGrid.new
+    @shot = 0
+    @lose = false
   end
 
   def two_unit_ship_position(coordinates)
@@ -117,6 +121,7 @@ include StandardOutput
   end
 
   def match_computer_shot_with_key
+    @shot += 1
     shot_selection = @human_player.grid.to_a.sample(1).to_h.keys[0]
     if @human_player.grid[shot_selection][1] == true
       @human_player.grid[shot_selection][0] = "  H  "
@@ -140,10 +145,12 @@ include StandardOutput
         i_sank_your_three_unit_ship
       end
     end
+    lose?
   end
 
-  def end_game
+  def lose?
     if @ship_1.sunk == true && @ship_2.sunk == true
+      @lose = true
     end
   end
 

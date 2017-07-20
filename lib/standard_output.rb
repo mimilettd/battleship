@@ -84,4 +84,12 @@ module StandardOutput
     puts "Hah! I sank your three-unit ship!\n\n"
   end
 
+  def human_won
+    puts "Congratulations! You won. Do you feel good about yourself?\n\n"
+  end
+
+  def computer_won
+    puts "I told you I would win!\n\n"
+  end
+
 end

@@ -3,11 +3,15 @@ require_relative 'game_grid'
 
 class Computer
 include StandardOutput
-  attr_reader :computer_player,
-              :ship_1,
-              :ship_2
+  attr_reader   :computer_player,
+                :ship_1,
+                :ship_2
+  attr_accessor :shot,
+                :lose
   def initialize
     @computer_player = GameGrid.new
+    @shot = 0
+    @lose = false
     find_first_two_unit_ship_coordinate
   end
 
@@ -89,6 +93,7 @@ include StandardOutput
   end
 
   def match_player_shot_with_key(shot_selection)
+    @shot += 1
     if @computer_player.grid[shot_selection][1] == true
       @computer_player.grid[shot_selection][0] = "  H  "
       you_hit
@@ -110,6 +115,13 @@ include StandardOutput
       if @ship_2.sunk == true
         you_sank_my_three_unit_ship
       end
+    end
+    lose?
+  end
+
+  def lose?
+    if @ship_1.sunk == true && @ship_2.sunk == true
+      @lose = true
     end
   end
 
