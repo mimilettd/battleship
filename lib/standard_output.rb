@@ -96,4 +96,8 @@ module StandardOutput
     puts "I told you I would win!\n\n"
   end
 
+  def you_did_not_hit_enter
+    puts "You didn't hit RETURN. Please hit RETURN next time.\n\n"
+  end
+
 end

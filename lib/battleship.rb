@@ -86,6 +86,7 @@ include StandardOutput
     if user_input == "\n"
       initiate_computer_shot_sequence
     else
+      you_did_not_hit_enter
       initiate_computer_shot_sequence
     end
   end
