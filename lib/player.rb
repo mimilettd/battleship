@@ -120,16 +120,25 @@ include StandardOutput
 
   end
 
-  def match_computer_shot_with_key
-    @shot += 1
+  def verify_coordinate
     shot_selection = @human_player.grid.to_a.sample(1).to_h.keys[0]
+    if @human_player.grid[shot_selection][0] == "  H  " || @human_player.grid[shot_selection][0] == "  M  "
+      verify_coordinate until @human_player.grid[shot_selection][0] != "  H  " || @human_player.grid[shot_selection][0] != "  M  "
+    else
+      match_computer_shot_with_key(shot_selection)
+    end
+  end
+
+  def match_computer_shot_with_key(shot_selection)
     if @human_player.grid[shot_selection][1] == true
       @human_player.grid[shot_selection][0] = "  H  "
       i_hit
+      @shot += 1
       ship_hit(shot_selection)
     else
       @human_player.grid[shot_selection][0] = "  M  "
       i_missed
+      @shot += 1
     end
   end
 

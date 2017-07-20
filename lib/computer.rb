@@ -97,10 +97,12 @@ include StandardOutput
     if @computer_player.grid[shot_selection][1] == true
       @computer_player.grid[shot_selection][0] = "  H  "
       you_hit
+      @computer_player.print_game_board
       ship_hit(shot_selection)
     else
       @computer_player.grid[shot_selection][0] = "  M  "
       you_missed
+      @computer_player.print_game_board
     end
   end
 

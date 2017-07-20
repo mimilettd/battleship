@@ -6,7 +6,10 @@ require 'pry'
 class Battleship
 include StandardOutput
   attr_reader   :computer_player,
-                :human_player
+                :human_player,
+                :start,
+                :finish
+                :total_time
   def initialize
     welcome
   end
@@ -32,6 +35,8 @@ include StandardOutput
     instructions
     game_selection
     user_input = gets.chomp.upcase
+    @start = Time.now
+    binding.pry
     start_game_sequence(user_input)
   end
 
@@ -63,46 +68,59 @@ include StandardOutput
   end
 
   def initiate_player_shot_sequence
-    if @computer_player.lose == false
+    if @computer_player.lose == true
+      end_game_sequence
+      @finish = Time.now
+    else
       computer_player.computer_player.print_game_board
       your_turn
       choose_a_position_to_fire
       user_input = gets.chomp.upcase
       computer_player.match_player_shot_with_key(user_input)
-      hit_enter_to_end_turn
-      user_input = gets
-      if user_input == "\n"
-        initiate_computer_shot_sequence
-      else
-        initiate_computer_shot_sequence
-      end
+      hit_enter
+    end
+  end
+
+  def hit_enter
+    hit_enter_to_end_turn
+    user_input = gets
+    if user_input == "\n"
+      initiate_computer_shot_sequence
     else
-    end_game_sequence
+      initiate_computer_shot_sequence
     end
   end
 
   def initiate_computer_shot_sequence
-    if @human_player.lose == false
-      my_turn
-      human_player.match_computer_shot_with_key
-      human_player.human_player.print_game_board
-      # computer_player.computer_player.print_game_board
-      initiate_player_shot_sequence
-    else
+    if @human_player.lose == true
       end_game_sequence
+      @finish = Time.now
+    else
+      my_turn
+      human_player.verify_coordinate
+      human_player.human_player.print_game_board
+      initiate_player_shot_sequence
     end
   end
 
   def end_game_sequence
     if @computer_player.lose == true
+      computer_player.computer_player.print_game_board
       human_won
       puts "It look you #{@human_player.shot} shots to sink your opponent's ships."
+      puts "The total time that the game took to play was #{@time_time}."
       exit
     else
+      human_player.human_player.print_game_board
       computer_won
       puts "It look your opponent #{@computer_player.shot} shots to sink your ships."
+      puts "The total time that the game took to play was #{@total_time}."
       exit
     end
+  end
+
+  def time_diff_milli
+   @total_time = @finish - @start
   end
 
 end

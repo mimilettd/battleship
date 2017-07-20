@@ -45,15 +45,15 @@ module StandardOutput
   end
 
   def you_missed
-    puts "Hah! You missed!\n\n"
+    puts "\nHah! You missed!\n\n"
   end
 
   def you_hit
-    puts "You hit my ship!\n"
+    puts "\nYou hit my ship!\n"
   end
 
   def hit_enter_to_end_turn
-    puts "Now end you turn by pressing ENTER."
+    puts "Now end your turn by pressing ENTER."
   end
 
   def my_turn
