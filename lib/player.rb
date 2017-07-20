@@ -123,7 +123,7 @@ include StandardOutput
   def verify_coordinate
     shot_selection = @human_player.grid.to_a.sample(1).to_h.keys[0]
     if @human_player.grid[shot_selection][0] == "  H  " || @human_player.grid[shot_selection][0] == "  M  "
-      verify_coordinate until @human_player.grid[shot_selection][0] != "  H  " || @human_player.grid[shot_selection][0] != "  M  "
+      verify_coordinate unless @human_player.grid[shot_selection][0] != "  H  " || @human_player.grid[shot_selection][0] != "  M  "
     else
       match_computer_shot_with_key(shot_selection)
     end

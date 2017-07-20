@@ -44,6 +44,10 @@ module StandardOutput
     puts "Choose a square you would like to fire. Good luck!\n\n"
   end
 
+  def invalid_coordinate
+    puts "You already shot there. Choose a square you would like to fire.\n\n"
+  end
+
   def you_missed
     puts "\nHah! You missed!\n\n"
   end

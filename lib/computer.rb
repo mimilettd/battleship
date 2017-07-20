@@ -1,5 +1,6 @@
 require_relative 'standard_output'
 require_relative 'game_grid'
+require 'pry'
 
 class Computer
 include StandardOutput
@@ -92,16 +93,28 @@ include StandardOutput
         "D4"=>[["B4","C4"],["D2","D3"]] }
   end
 
+  def verify_coordinate(shot_selection)
+    if @computer_player.grid[shot_selection][0] == "  H  " || @computer_player.grid[shot_selection][0] == "  M  "
+      invalid_coordinate
+      shot_selection = gets.chomp.upcase
+      verify_coordinate(shot_selection)
+    #   until @computer_player.grid[shot_selection][0] != "  H  " || @computer_player.grid[shot_selection][0] != "  M  "
+    else
+      match_player_shot_with_key(shot_selection)
+    end
+  end
+
   def match_player_shot_with_key(shot_selection)
-    @shot += 1
     if @computer_player.grid[shot_selection][1] == true
       @computer_player.grid[shot_selection][0] = "  H  "
       you_hit
+      @shot += 1
       @computer_player.print_game_board
       ship_hit(shot_selection)
     else
       @computer_player.grid[shot_selection][0] = "  M  "
       you_missed
+      @shot += 1
       @computer_player.print_game_board
     end
   end

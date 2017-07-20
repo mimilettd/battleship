@@ -9,9 +9,10 @@ include StandardOutput
                 :human_player,
                 :start,
                 :finish
-                :total_time
   def initialize
     welcome
+    @start = 0
+    @finish = 0
   end
 
   def welcome
@@ -27,6 +28,8 @@ include StandardOutput
     elsif user_input == "q"
       quit_game
     elsif user_input == "p"
+      @start = Time.now
+      binding.pry
       play_game
     end
   end
@@ -35,8 +38,6 @@ include StandardOutput
     instructions
     game_selection
     user_input = gets.chomp.upcase
-    @start = Time.now
-    binding.pry
     start_game_sequence(user_input)
   end
 
@@ -70,13 +71,12 @@ include StandardOutput
   def initiate_player_shot_sequence
     if @computer_player.lose == true
       end_game_sequence
-      @finish = Time.now
     else
       computer_player.computer_player.print_game_board
       your_turn
       choose_a_position_to_fire
       user_input = gets.chomp.upcase
-      computer_player.match_player_shot_with_key(user_input)
+      computer_player.verify_coordinate(user_input)
       hit_enter
     end
   end
@@ -94,7 +94,6 @@ include StandardOutput
   def initiate_computer_shot_sequence
     if @human_player.lose == true
       end_game_sequence
-      @finish = Time.now
     else
       my_turn
       human_player.verify_coordinate
@@ -107,20 +106,19 @@ include StandardOutput
     if @computer_player.lose == true
       computer_player.computer_player.print_game_board
       human_won
-      puts "It look you #{@human_player.shot} shots to sink your opponent's ships."
-      puts "The total time that the game took to play was #{@time_time}."
+      @finish = Time.now
+      binding.pry
+      puts "It took you #{@computer_player.shot} shots to sink your opponent's ships."
+      puts "The total time that the game took to play was #{@finish - @start}."
       exit
     else
       human_player.human_player.print_game_board
       computer_won
-      puts "It look your opponent #{@computer_player.shot} shots to sink your ships."
-      puts "The total time that the game took to play was #{@total_time}."
+      @finish = Time.now
+      puts "It took your opponent #{@human_player.shot} shots to sink your ships."
+      puts "The total time that the game took to play was #{@finish - @start}."
       exit
     end
-  end
-
-  def time_diff_milli
-   @total_time = @finish - @start
   end
 
 end
