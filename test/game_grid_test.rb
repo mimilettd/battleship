@@ -30,5 +30,10 @@ class GameGridTest < Minitest::Test
     assert_instance_of Ship, ship_1
   end
 
+  def test_first_coordinate_can_pass_into_ship_space_1
+    grid = GameGrid.new
+    ship_1 = grid.create_new_ship
+    assert ship_1.space_1("A1")
+  end
 
 end

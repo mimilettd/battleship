@@ -7,6 +7,14 @@ class PlayerTest < Minitest::Test
     assert_instance_of Player, human_player
   end
 
+  def test_two_unit_ship_validation
+    skip
+    human_player = Player.new
+    human_player.two_unit_ship_position("A1 A2")
+    assert_equal true, human_player.human_player.grid["A1"][1]
+    assert_equal true, human_player.human_player.grid["A2"][1]
+  end
+
   def test_three_unit_ship_validation
     skip
     human_player = Player.new

@@ -1,4 +1,8 @@
-require '../lib/computer'
+require 'simplecov'
+SimpleCov.start
+require 'minitest/autorun'
+require 'minitest/pride'
+require './lib/computer'
 require 'pry'
 
 class ComputerTest < Minitest::Test
@@ -14,27 +18,24 @@ class ComputerTest < Minitest::Test
 
   def test_computer_selects_first_coordinate_and_returns_true
     computer = Computer.new
-    assert true, computer.find_first_two_unit_ship_coordinate
+    assert computer.find_first_two_unit_ship_coordinate
   end
 
   def test_computer_selects_second_coordinate_and_returns_true
     computer = Computer.new
     coord1 = computer.computer_player.grid.to_a.sample(1).to_h.keys[0]
-    assert true, computer.find_second_two_unit_ship_coordinate(coord1)
+    assert computer.find_second_two_unit_ship_coordinate(coord1)
   end
 
-  def test_computer_prints_game_board
+  def test_computer_selects_first_coord_for_three_unit_ship_and_returns_true
     computer = Computer.new
-    binding.pry
-    expected = "==========="
-              [".", "1", "2", "3", "4"]
-              ["A", " ", " ", " ", " "]
-              ["B", " ", " ", " ", " "]
-              ["C", " ", " ", " ", " "]
-              ["D", " ", " ", " ", " "]
-              "==========="
+    assert computer.find_first_three_unit_ship_coordinate
+  end
 
-    assert_equal expected, computer.print_game_board
+  def test_computer_selects_second_coord_for_three_unit_ship_and_returns_true
+    computer = Computer.new
+    coord1 = computer.computer_player.grid.to_a.sample(1).to_h.keys[0]
+    assert computer.find_second_three_unit_ship_coordinate(coord1)
   end
 
 end
