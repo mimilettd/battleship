@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require '../lib/game_grid'
+require './lib/game_grid'
 require 'pry'
 
 class GameGridTest < Minitest::Test

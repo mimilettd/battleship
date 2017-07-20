@@ -14,12 +14,6 @@ class Ship
     @sunk        = false
   end
 
-  # def sunk?
-  #   if @damaged == @length
-  #     @sunk = true
-  #   end
-  # end
-
   def damaged
     @damaged += 1
     if @damaged == @length
