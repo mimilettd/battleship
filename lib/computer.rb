@@ -98,7 +98,6 @@ include StandardOutput
       invalid_coordinate
       shot_selection = gets.chomp.upcase
       verify_coordinate(shot_selection)
-    #   until @computer_player.grid[shot_selection][0] != "  H  " || @computer_player.grid[shot_selection][0] != "  M  "
     else
       match_player_shot_with_key(shot_selection)
     end
