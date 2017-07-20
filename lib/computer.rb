@@ -3,7 +3,9 @@ require_relative 'game_grid'
 
 class Computer
 include StandardOutput
-  attr_reader :computer_player
+  attr_reader :computer_player,
+              :ship_1,
+              :ship_2
   def initialize
     @computer_player = GameGrid.new
     find_first_two_unit_ship_coordinate
@@ -12,6 +14,8 @@ include StandardOutput
   def find_first_two_unit_ship_coordinate
     coord1 = @computer_player.grid.to_a.sample(1).to_h.keys[0]
     @computer_player.grid[coord1][1] = true
+    @ship_1 = @computer_player.create_new_ship
+    @ship_1.space_1(coord1)
     find_second_two_unit_ship_coordinate(coord1)
   end
 
@@ -19,6 +23,7 @@ include StandardOutput
     coord2_array = neighboring_coordinates_for_two_unit_ship[coord1]
     coord2 = coord2_array.sample(1)[0]
     @computer_player.grid[coord2][1] = true
+    @ship_1.space_2(coord2)
     find_first_three_unit_ship_coordinate
   end
 
@@ -47,6 +52,8 @@ include StandardOutput
       find_first_three_unit_ship_coordinate
     else
       @computer_player.grid[coord1][1] = true
+      @ship_2 = @computer_player.create_new_ship
+      @ship_2.space_1(coord1)
       find_second_three_unit_ship_coordinate(coord1)
     end
   end
@@ -57,7 +64,9 @@ include StandardOutput
     coord2 = coord2_array[0]
     coord3 = coord2_array[1]
     @computer_player.grid[coord2][1] = true
+    @ship_2.space_2(coord2)
     @computer_player.grid[coord3][1] = true
+    @ship_2.space_3(coord3)
   end
 
   def neighboring_coordinates_for_three_unit_ship
@@ -83,10 +92,26 @@ include StandardOutput
     if @computer_player.grid[shot_selection][1] == true
       @computer_player.grid[shot_selection][0] = "  H  "
       you_hit
+      ship_hit(shot_selection)
     else
       @computer_player.grid[shot_selection][0] = "  M  "
       you_missed
     end
   end
+
+  def ship_hit(shot_selection)
+    if @ship_1.fore == shot_selection || @ship_1.hull == shot_selection || @ship_1.aft == shot_selection
+      @ship_1.damaged
+      if @ship_1.sunk == true
+        you_sank_my_two_unit_ship
+      end
+    elsif @ship_2.fore == shot_selection || @ship_2.hull == shot_selection || @ship_2.aft == shot_selection
+      @ship_2.damaged
+      if @ship_2.sunk == true
+        you_sank_my_three_unit_ship
+      end
+    end
+  end
+
 
 end

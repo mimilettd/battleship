@@ -18,7 +18,6 @@ include StandardOutput
       @human_player.grid[coord1][1] = true
       @ship_1 = @human_player.create_new_ship
       @ship_1.space_1(coord1)
-      binding.pry
     end
     validating_two_unit_ship_position(coord1, coord2)
   end
@@ -33,11 +32,9 @@ include StandardOutput
     if coord1_ascii[0] == coord2_ascii[0] && coord1_ascii[1] + 1 == coord2_ascii[1]
       @human_player.grid[coord2][1] = true
       @ship_1.space_2(coord2)
-      binding.pry
     elsif coord1_ascii[0] + 1 == coord2_ascii[0] && coord1_ascii[1] == coord2_ascii[1]
       @human_player.grid[coord2][1] = true
       @ship_1.space_2(coord2)
-      binding.pry
     else
       @human_player.grid[coord1][1] = false
       incorrect_ship_placement_for_two_unit_ship
@@ -54,7 +51,6 @@ include StandardOutput
       @human_player.grid[coord1][1] = true
       @ship_2 = @human_player.create_new_ship
       @ship_2.space_1(coord1)
-      binding.pry
       validating_overlap(coord1, coord2)
     else
     incorrect_ship_placement_for_three_unit_ship
@@ -80,12 +76,10 @@ include StandardOutput
     if coord1_ascii[0] == coord2_ascii[0] && coord1_ascii[1] + 2 == coord2_ascii[1]
       @human_player.grid[coord2][1] = true
       @ship_2.space_3(coord2)
-      binding.pry
       convert_horizontal_middle_cell(coord2_ascii)
     elsif coord1_ascii[0] + 2 == coord2_ascii[0] && coord1_ascii[1] == coord2_ascii[1]
       @human_player.grid[coord2][1] = true
       @ship_2.space_3(coord2)
-      binding.pry
       convert_vertical_middle_cell(coord2_ascii)
     else
       @human_player.grid[coord1][1] = false
@@ -106,7 +100,7 @@ include StandardOutput
     coord3 = coord3_char.join
     @human_player.grid[coord3][1] = true
     @ship_2.space_2(coord3)
-    binding.pry
+
   end
 
   def convert_vertical_middle_cell(coord2_ascii)
@@ -119,7 +113,7 @@ include StandardOutput
     coord3 = coord3_char.join
     @human_player.grid[coord3][1] = true
     @ship_2.space_2(coord3)
-    binding.pry
+
   end
 
   def match_computer_shot_with_key
@@ -127,9 +121,29 @@ include StandardOutput
     if @human_player.grid[shot_selection][1] == true
       @human_player.grid[shot_selection][0] = "  H  "
       i_hit
+      ship_hit(shot_selection)
     else
       @human_player.grid[shot_selection][0] = "  M  "
       i_missed
+    end
+  end
+
+  def ship_hit(shot_selection)
+    if @ship_1.fore == shot_selection || @ship_1.hull == shot_selection || @ship_1.aft == shot_selection
+      @ship_1.damaged
+      if @ship_1.sunk == true
+        i_sank_your_two_unit_ship
+      end
+    elsif @ship_2.fore == shot_selection || @ship_2.hull == shot_selection || @ship_2.aft == shot_selection
+      @ship_2.damaged
+      if @ship_2.sunk == true
+        i_sank_your_three_unit_ship
+      end
+    end
+  end
+
+  def end_game
+    if @ship_1.sunk == true && @ship_2.sunk == true
     end
   end
 

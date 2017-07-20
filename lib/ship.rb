@@ -1,47 +1,45 @@
 class Ship
-  attr_reader   :bow,
-                :rear
+  attr_reader   :fore,
+                :hull,
+                :aft
   attr_accessor :length,
                 :damaged,
                 :sunk
   def initialize
     @length      = 0
-    @space_1     = nil
-    @space_2     = nil
-    @space_3     = nil
+    @fore        = nil
+    @hull        = nil
+    @aft         = nil
     @damaged     = 0
     @sunk        = false
   end
 
-  def sunk?
+  # def sunk?
+  #   if @damaged == @length
+  #     @sunk = true
+  #   end
+  # end
+
+  def damaged
+    @damaged += 1
     if @damaged == @length
       @sunk = true
     end
   end
 
-  def damaged
-    @damaged += 1
-  end
-
-  def length
-    @length += 1
-  end
-
   def space_1(coord)
-    @space_1 = coord
+    @fore = coord
     @length += 1
   end
 
   def space_2(coord)
-    @space_2 = coord
+    @hull = coord
     @length += 1
-    binding.pry
   end
 
   def space_3(coord)
-    @space_3 = coord
+    @aft = coord
     @length += 1
-    binding.pry
   end
 
 end

@@ -6,22 +6,22 @@ class GameGrid
                 :print_game_board,
                 :ship
   def initialize
-    @grid = {"A1" => [" ", false],
-             "A2" => [" ", false],
-             "A3" => [" ", false],
-             "A4" => [" ", false],
-             "B1" => [" ", false],
-             "B2" => [" ", false],
-             "B3" => [" ", false],
-             "B4" => [" ", false],
-             "C1" => [" ", false],
-             "C2" => [" ", false],
-             "C3" => [" ", false],
-             "C4" => [" ", false],
-             "D1" => [" ", false],
-             "D2" => [" ", false],
-             "D3" => [" ", false],
-             "D4" => [" ", false] }
+    @grid = {"A1" => ["     ", false],
+             "A2" => ["     ", false],
+             "A3" => ["     ", false],
+             "A4" => ["     ", false],
+             "B1" => ["     ", false],
+             "B2" => ["     ", false],
+             "B3" => ["     ", false],
+             "B4" => ["     ", false],
+             "C1" => ["     ", false],
+             "C2" => ["     ", false],
+             "C3" => ["     ", false],
+             "C4" => ["     ", false],
+             "D1" => ["     ", false],
+             "D2" => ["     ", false],
+             "D3" => ["     ", false],
+             "D4" => ["     ", false] }
   end
 
   def print_game_board
@@ -41,16 +41,19 @@ class GameGrid
 
   def space_1(coord)
     @ship.space_1(coord)
-    binding.pry
   end
 
   def space_2(coord)
     @ship.space_2(coord)
-    binding.pry
   end
 
   def space_3(coord)
     @ship.space_3(coord)
   end
+
+  def damaged
+    @ship.damaged
+  end
+
 
 end

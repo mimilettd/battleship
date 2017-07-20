@@ -49,7 +49,7 @@ module StandardOutput
   end
 
   def you_hit
-    puts "You hit my ship! How dare you!\n\n"
+    puts "You hit my ship!\n"
   end
 
   def hit_enter_to_end_turn
@@ -61,10 +61,27 @@ module StandardOutput
   end
 
   def i_hit
-    puts "I hit your ship!\n\n"
+    puts "I hit your ship!\n"
   end
 
   def i_missed
     puts "I missed...\n\n"
   end
+
+  def you_sank_my_two_unit_ship
+    puts "How dare you sink my two-unit ship!\n\n"
+  end
+
+  def you_sank_my_three_unit_ship
+    puts "How dare you sink my three-unit ship!\n\n"
+  end
+
+  def i_sank_your_two_unit_ship
+    puts "Hah! I sank your two-unit ship!\n\n"
+  end
+
+  def i_sank_your_three_unit_ship
+    puts "Hah! I sank your three-unit ship!\n\n"
+  end
+
 end

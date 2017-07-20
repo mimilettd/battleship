@@ -72,6 +72,8 @@ include StandardOutput
     user_input = gets
     if user_input == "\n"
       initiate_computer_shot_sequence
+    else
+      initiate_computer_shot_sequence
     end
   end
 
@@ -79,7 +81,11 @@ include StandardOutput
     my_turn
     human_player.match_computer_shot_with_key
     human_player.human_player.print_game_board
-    computer_player.computer_player.print_game_board
+    # computer_player.computer_player.print_game_board
+    initiate_player_shot_sequence
+  end
+
+  def end_game_sequence
   end
 
 end
